@@ -138,3 +138,114 @@ Index.html
     </form>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+this is only to extract the delete getone insert many and  only last process in question  u can keep it for writing dont run it 
+
+
+
+
+const { MongoClient } = require('mongodb');
+
+async function main() {
+    const uri = 'mongodb://localhost:27017';
+    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+    try {
+        await client.connect();
+        const db = client.db('student_management');
+        const collection = db.collection('students');
+
+        // Single Insertion
+        async function insertStudent(student) {
+            await collection.insertOne(student);
+            console.log('Student inserted:', student);
+        }
+
+        // Bulk Insertion
+        async function insertStudents(students) {
+            await collection.insertMany(students);
+            console.log('Students inserted:', students);
+        }
+
+        // Update Operation
+        async function updateStudent(studentId, updatedData) {
+            await collection.updateOne({ student_id: studentId }, { $set: updatedData });
+            console.log(`Student with ID ${studentId} updated with data:`, updatedData);
+        }
+
+        // Delete Operation
+        async function deleteStudent(studentId) {
+            await collection.deleteOne({ student_id: studentId });
+            console.log(`Student with ID ${studentId} deleted`);
+        }
+
+        // Get One Operation
+        async function getStudent(studentId) {
+            const student = await collection.findOne({ student_id: studentId });
+            console.log('Retrieved student:', student);
+            return student;
+        }
+
+        // Example Data
+        const student1 = {
+            student_id: 1,
+            name: 'John Doe',
+            dob: '2000-01-01',
+            address: '123 Main St',
+            phone: '123-456-7890',
+            email: 'johndoe@example.com',
+        };
+
+        const studentsBulk = [
+            {
+                student_id: 2,
+                name: 'Jane Smith',
+                dob: '2001-02-02',
+                address: '456 Elm St',
+                phone: '987-654-3210',
+                email: 'janesmith@example.com',
+            },
+            {
+                student_id: 3,
+                name: 'Jim Brown',
+                dob: '2002-03-03',
+                address: '789 Oak St',
+                phone: '654-321-0987',
+                email: 'jimbrown@example.com',
+            },
+        ];
+
+        // Perform Operations
+        await insertStudent(student1);
+        await insertStudents(studentsBulk);
+        await updateStudent(1, { address: '321 Main St', phone: '111-222-3333' });
+        await deleteStudent(3);
+        await getStudent(2);
+
+    } finally {
+        await client.close();
+    }
+}
+
+main().catch(console.error);
