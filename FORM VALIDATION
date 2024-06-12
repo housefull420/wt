@@ -1,4 +1,40 @@
-😊😊😊😊😊😊😊😊1.FORM VALIDATION:😊😊😊😊😊😊😊😊😊
+
+1.For a Student management system, create a simple form and validate the following using  JavaScript 
+∙ password 
+∙ e-mail 
+∙ username validation 
+∙ mobile number validation 
+Write a program to demonstrate the client and server communication using http request and  response. 
+
+4. For a banking management system, create a simple form and validate the following using  JavaScript 
+∙ password 
+∙ e-mail 
+∙ username validation 
+∙ mobile number validation 
+Write a program to demonstrate the client and server communication using http request and  response. 
+
+
+7.Create a simple form and validate the following using JavaScript 
+∙ password 
+∙ e-mail 
+∙ username validation 
+∙ mobile number validation 
+Write a program to demonstrate the client and server communication using http request and  response.
+
+
+10.For a Student management system, create a simple form and validate the following using  JavaScript 
+∙ password 
+∙ e-mail 
+∙ username validation 
+∙ mobile number validation 
+Write a program to demonstrate the client and server communication using http request and  response.
+
+
+
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -147,15 +183,4 @@ http.createServer((req, res) => {
 }).listen(3000, () => {
     console.log('Server running at http://localhost:3000/');
 });
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-4.FORM VALIDATION
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-5. same as 2 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------
-7.same as 1
-------------------------------------------------------------------------------------------------------------------------------------------------------------
-8.same as 2
-----------------------------------------------------------------------------------------------------------------------------------------------------------------
-10. same as 1
