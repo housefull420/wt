@@ -1,0 +1,140 @@
+2.Design a simple form to collect the personal information of a user of a banking application  and process the data using GET method 
+Collect the personal information of a user of a Student management system and store the data  in MongoDB database and process it using Update and delete operations. 
+
+5.Design a simple form to collect the personal information of a student application and  process the data using GET method 
+Collect the personal information of a user of a student application system and store the data in  MongoDB database. Perform single insertion and bulk insertion using it.
+
+8. Design a simple form to collect the personal information of a customer for an online  shopping application and process the data using GET method 
+Collect the personal information of a user of a customer for an online shopping application  and store the data in MongoDB database and process it using getone operation. 
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1><b>LOGIN PAGE</b></h1>
+    <form action="http://localhost:4000/login" method="get">
+        Enter your name: <input type="text" name="username" value="" /><br><br>
+        Enter your email: <input type="text" name="email" value="" /><br><br>
+        Enter your qualification: <input type="text" name="qualification" value="" /><br><br>
+        <input type="submit" name="login" value="login" />
+    </form>
+    <br><br>
+</body>
+</html>
+
+server.js
+const http = require('http');
+const url = require('url');
+const querystring = require('querystring');
+
+function onRequest(request, response) {
+    const path = url.parse(request.url).pathname;
+    console.log('Request for ' + path + ' received.');
+
+        const query = url.parse(request.url).query;
+        const parsedQuery = querystring.parse(query);
+        const name = parsedQuery["username"];
+        const email = parsedQuery["email"];
+        const qualification = parsedQuery["qualification"];
+
+        response.writeHead(200, { 'Content-Type': 'text/html' });
+        response.write('<h1>Login Details</h1>');
+        response.write(`<p>Name: ${name}</p>`);
+        response.write(`<p>Email: ${email}</p>`);
+        response.write(`<p>Qualification: ${qualification}</p>`);
+        response.end();
+    }
+
+http.createServer(onRequest).listen(4000);
+console.log('Server started on http://localhost:4000');
+
+2.b Mongoose
+Npm install express
+npm install mongoose
+npm install express mongoose body-parser
+Npm init
+Give more enter
+In json 
+"scripts": {
+    "start":"node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+Then save package.json
+npm start
+
+Index.js
+
+const express = require('express');
+const mongoose = require('mongoose');
+
+
+const app = express();
+
+
+mongoose.connect('mongodb://localhost:27017/student_management');
+
+
+const studentSchema = new mongoose.Schema({
+    name: String,
+    age: Number,
+    grade: String,
+    email: String
+});
+
+
+const Student = mongoose.model('Student', studentSchema);
+
+
+app.get('/submit_form', (req, res) => {
+    const userInfo = req.query;
+    console.log(userInfo);
+    res.send(`Received the data: ${JSON.stringify(userInfo)}`);
+});
+
+
+app.listen(3000, () => {
+    console.log('Server is running on http://localhost:3000');
+});
+
+
+
+Index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Application - Personal Information Form</title>
+</head>
+<body>
+    <h1>Personal Information Form</h1>
+    <form action="http://localhost:3000/submit_form" method="GET">
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required><br><br>
+
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="4" cols="50" required></textarea><br><br>
+
+
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" required><br><br>
+
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
