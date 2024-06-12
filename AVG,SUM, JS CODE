@@ -1,0 +1,28 @@
+11. Write a JavaScript code to create an array called ‘scores’ containing the scores of students
+in the class and perform the following operations:
+• Double each score in the scores array
+• Filter out the scores which are abive 85
+• Calculate the total score and average score
+Write a JavaScript program to display the factors of the given number.
+
+
+
+
+
+  
+// Create an array of scores
+let scores = [78, 92, 85, 67, 88, 95, 72, 80];
+
+// Double each score in the scores array
+let doubledScores = scores.map(score => score * 2);
+console.log('Doubled Scores:', doubledScores);
+
+// Filter out the scores which are above 85
+let filteredScores = scores.filter(score => score <= 85);
+console.log('Filtered Scores (<= 85):', filteredScores);
+
+// Calculate the total score and average score
+let totalScore = scores.reduce((acc, score) => acc + score, 0);
+let averageScore = totalScore / scores.length;
+console.log('Total Score:', totalScore);
+console.log('Average Score:', averageScore);
