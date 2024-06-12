@@ -1,4 +1,4 @@
-1.FORM VALIDATION:
+😊😊😊😊😊😊😊😊1.FORM VALIDATION:😊😊😊😊😊😊😊😊😊
 
 <!DOCTYPE html>
 <html lang="en">
@@ -148,7 +148,7 @@ http.createServer((req, res) => {
     console.log('Server running at http://localhost:3000/');
 });
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-2.get method for bank
+😊😊😊😊😊😊😊😊😊😊2.get method for bank😊😊😊😊😊😊😊😊😊
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -277,4 +277,157 @@ Index.html
     </form>
 </body>
 </html>
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+😊😊😊😊😊😊😊4.FORM VALIDATION😊😊😊😊😊😊😊
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <style>
+        form {
+            width: 300px;
+            margin: 0 auto;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<form id="studentForm">
+    <h2>Student Management System</h2>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username">
+    <div class="error" id="usernameError"></div>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email">
+    <div class="error" id="emailError"></div>
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password">
+    <div class="error" id="passwordError"></div>
+    
+    <label for="mobile">Mobile Number:</label>
+    <input type="text" id="mobile" name="mobile">
+    <div class="error" id="mobileError"></div>
+    
+    <button type="button" onclick="validateForm()">Submit</button>
+</form>
+
+<script>
+function validateForm() {
+    let isValid = true;
+
+    // Clear previous error messages
+    document.getElementById('usernameError').textContent = '';
+    document.getElementById('emailError').textContent = '';
+    document.getElementById('passwordError').textContent = '';
+    document.getElementById('mobileError').textContent = '';
+
+    // Username validation
+    const username = document.getElementById('username').value;
+    if (!/^[a-zA-Z0-9]{3,}$/.test(username)) {
+        document.getElementById('usernameError').textContent = 'Username must be at least 3 characters long and contain only alphanumeric characters.';
+        isValid = false;
+    }
+
+    // Email validation
+    const email = document.getElementById('email').value;
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+        document.getElementById('emailError').textContent = 'Invalid email format.';
+        isValid = false;
+    }
+
+    // Password validation
+    const password = document.getElementById('password').value;
+    if (password.length < 6) {
+        document.getElementById('passwordError').textContent = 'Password must be at least 6 characters long.';
+        isValid = false;
+    }
+
+    // Mobile number validation
+    const mobile = document.getElementById('mobile').value;
+    if (!/^\d{10}$/.test(mobile)) {
+        document.getElementById('mobileError').textContent = 'Mobile number must be 10 digits.';
+        isValid = false;
+    }
+
+    if (isValid) {
+        alert('Form submitted successfully!');
+        // Here you can add the code to submit the form
+    }
+}
+</script>
+
+</body>
+</html>
+
+1.b] http request and response
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area Calculation</title>
+</head>
+<body>
+    <form action="http://localhost:3000/calculate-area" method="get">
+        <h3>Rectangle</h3>
+        <label for="t1">Enter length:</label>
+        <input type="number" id="t1" name="t1"><br><br>
+        
+        <label for="t2">Enter breadth:</label>
+        <input type="number" id="t2" name="t2"><br><br>
+        
+        <h3>Circle</h3>
+        <label for="t3">Enter radius:</label>
+        <input type="number" id="t3" name="t3"><br><br>
+        
+        <h3>Square</h3>
+        <label for="t4">Enter side:</label>
+        <input type="number" id="t4" name="t4"><br><br>
+        
+        <button type="submit">Calculate Area</button>
+    </form>
+</body>
+</html>
+
+server.js
+const http = require('http');
+const url = require('url');
+
+http.createServer((req, res) => {
+    if (req.method === 'GET') {
+        const q = url.parse(req.url, true).query;
+        
+        const length = Number(q.t1);
+        const breadth = Number(q.t2);
+        const radius = Number(q.t3);
+        const side = Number(q.t4);
+        
+        const rectangleArea = length * breadth;
+        const circleArea = Math.PI * radius * radius;
+        const squareArea = side * side;
+        
+        res.writeHead(200, {'Content-Type': 'text/plain'});
+        res.write(`Area of the rectangle is ${rectangleArea}\n`);
+        res.write(`Area of the circle is ${circleArea}\n`);
+        res.write(`Area of the square is ${squareArea}`);
+        res.end();
+    } else {
+        res.writeHead(405, {'Content-Type': 'text/plain'});
+        res.end('Method Not Allowed');
+    }
+}).listen(3000, () => {
+    console.log('Server running at http://localhost:3000/');
+});
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
