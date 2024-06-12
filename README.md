@@ -1,2 +1,2 @@
-npm i
-npm run dev for react 
+1.npm i
+2.npm run dev for react 
