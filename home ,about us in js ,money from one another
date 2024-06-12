@@ -1,0 +1,81 @@
+
+14. Create the NodeJS server which consists of pages like home, aboutus and contact, display  the content based on the URL. 
+Write a JavaScript program for bank application in which the users transfer money from one  account to another. How will use error handling mechanism to handle insufficient balance? 
+
+
+
+
+const express = require('express');
+const app = express();
+const port = 3000;
+
+// Define routes
+app.get('/', (req, res) => {
+    res.send('<h1>Home Page</h1><p>Welcome to the home page.</p>');
+});
+
+app.get('/aboutus', (req, res) => {
+    res.send('<h1>About Us</h1><p>Learn more about us on this page.</p>');
+});
+
+app.get('/contact', (req, res) => {
+    res.send('<h1>Contact</h1><p>Contact us through this page.</p>');
+});
+
+// Start the server
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
+
+
+
+
+
+---------------------------------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx----------------------------------------------------------xxxxxxxxxxxxxxxxxxxxxxxxxxx---------
+
+
+
+
+
+class BankAccount {
+    constructor(accountNumber, accountHolder, balance) {
+        this.accountNumber = accountNumber;
+        this.accountHolder = accountHolder;
+        this.balance = balance;
+    }
+
+    transfer(amount, targetAccount) {
+        if (amount <= 0) {
+            throw new Error('Transfer amount must be positive.');
+        }
+        if (this.balance < amount) {
+            throw new Error('Insufficient balance.');
+        }
+        this.balance -= amount;
+        targetAccount.balance += amount;
+        console.log(`Transfer successful: ${amount} has been transferred from ${this.accountNumber} to ${targetAccount.accountNumber}`);
+    }
+
+    getBalance() {
+        return this.balance;
+    }
+}
+
+// Example usage
+const account1 = new BankAccount('12345', 'John Doe', 500);
+const account2 = new BankAccount('67890', 'Jane Smith', 300);
+
+try {
+    account1.transfer(200, account2);
+    console.log(`Account 1 balance: ${account1.getBalance()}`);
+    console.log(`Account 2 balance: ${account2.getBalance()}`);
+} catch (error) {
+    console.error(error.message);
+}
+
+try {
+    account1.transfer(400, account2); // This will trigger an error due to insufficient balance
+} catch (error) {
+    console.error(error.message);
+}
+
