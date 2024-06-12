@@ -1,0 +1,91 @@
+
+12. Write a JavaScript program to display the content as “Kongu Engineering College” while
+you move the mouseout. When performing mousemove, “Kongu Engineering College”
+should be changed to “KEC”.
+Write JavaScript code to perform any four math operations using callback.
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Event Example</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div id="textElement">Kongu Engineering College</div>
+
+    <script>
+        const textElement = document.getElementById('textElement');
+
+        textElement.addEventListener('mouseover', () => {
+            textElement.textContent = 'KEC';
+        });
+
+        textElement.addEventListener('mouseout', () => {
+            textElement.textContent = 'Kongu Engineering College';
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+js code
+
+
+function performMathOperations(a, b, callback) {
+    return callback(a, b);
+}
+
+function add(x, y) {
+    return x + y;
+}
+
+function subtract(x, y) {
+    return x - y;
+}
+
+function multiply(x, y) {
+    return x * y;
+}
+
+function divide(x, y) {
+    if (y === 0) {
+        return 'Cannot divide by zero';
+    }
+    return x / y;
+}
+
+// Example usage
+let num1 = 10;
+let num2 = 5;
+
+console.log(`Addition: ${performMathOperations(num1, num2, add)}`);
+console.log(`Subtraction: ${performMathOperations(num1, num2, subtract)}`);
+console.log(`Multiplication: ${performMathOperations(num1, num2, multiply)}`);
+console.log(`Division: ${performMathOperations(num1, num2, divide)}`);
